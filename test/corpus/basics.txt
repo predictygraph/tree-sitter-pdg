@@ -1,0 +1,108 @@
+==================
+Graph header and css import
+==================
+
+graph dir=LR route=ortho edge-width=1.5
+css "theme.css"
+
+---
+
+(source_file
+  (graph_statement
+    (attribute key: (attribute_name) value: (value))
+    (attribute key: (attribute_name) value: (value))
+    (attribute key: (attribute_name) value: (value)))
+  (css_import path: (string)))
+
+==================
+Inline css block
+==================
+
+css { node { fill: #fff; } }
+a
+
+---
+
+(source_file
+  (css_block (css_content))
+  (node_statement id: (identifier)))
+
+==================
+Nodes, classes, quoted attribute values
+==================
+
+user "Data scientist" image=icons/user.svg
+sched "HAMi scheduler".hami shape=pill title="a b"
+
+---
+
+(source_file
+  (node_statement
+    id: (identifier)
+    label: (string)
+    (attribute key: (attribute_name) value: (value)))
+  (node_statement
+    id: (identifier)
+    label: (string)
+    (class)
+    (attribute key: (attribute_name) value: (value))
+    (attribute key: (attribute_name) value: (string))))
+
+==================
+Edges: chains, fan-out, label, class
+==================
+
+a -> b ==> c
+x, y <..> z "sync" .hot width=2
+
+---
+
+(source_file
+  (edge_statement
+    (endpoints (identifier)) (arrow)
+    (endpoints (identifier)) (arrow)
+    (endpoints (identifier)))
+  (edge_statement
+    (endpoints (identifier) (identifier)) (arrow)
+    (endpoints (identifier))
+    label: (string)
+    (class)
+    (attribute key: (attribute_name) value: (value))))
+
+==================
+Groups, defaults, semicolons, comments
+==================
+
+# a comment
+group gpus "GPU nodes" layout=grid cols=2 {
+  default node .gpu
+  g0 "A100"; g1 "H100"   # trailing
+}
+
+---
+
+(source_file
+  (comment)
+  (group
+    id: (identifier)
+    label: (string)
+    (attribute key: (attribute_name) value: (value))
+    (attribute key: (attribute_name) value: (value))
+    (block
+      (default_statement (class))
+      (node_statement id: (identifier) label: (string))
+      (node_statement id: (identifier) label: (string))
+      (comment))))
+
+==================
+Hex colour is not a comment
+==================
+
+a fill=#fff
+
+---
+
+(source_file
+  (node_statement
+    id: (identifier)
+    (attribute key: (attribute_name) value: (value))))

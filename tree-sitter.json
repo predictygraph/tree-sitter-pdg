@@ -1,0 +1,22 @@
+{
+  "grammars": [
+    {
+      "name": "pdg",
+      "camelcase": "Pdg",
+      "scope": "source.pdg",
+      "path": ".",
+      "file-types": ["pdg"],
+      "highlights": "queries/pdg/highlights.scm",
+      "injections": "queries/pdg/injections.scm",
+      "locals": "queries/pdg/locals.scm"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "GPL-3.0-or-later",
+    "description": "predictygraph (.pdg) diagram grammar for tree-sitter",
+    "authors": [{ "name": "Reza Jelveh", "email": "git@jelveh.me" }],
+    "links": { "repository": "https://github.com/predictygraph/tree-sitter-pdg" }
+  },
+  "bindings": { "c": true, "node": true, "python": true, "rust": true, "go": false, "swift": false }
+}

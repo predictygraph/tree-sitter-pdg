@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: 2026 The predictygraph Authors
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+graph dir=LR route=ortho
+# comment
+group k8s "Kubernetes" {
+  sched "HAMi".hami
+}
+user -> sched "submit" width=2
