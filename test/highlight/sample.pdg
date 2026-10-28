@@ -1,0 +1,6 @@
+graph dir=LR route=ortho
+# comment
+group k8s "Kubernetes" {
+  sched "HAMi".hami
+}
+user -> sched "submit" width=2

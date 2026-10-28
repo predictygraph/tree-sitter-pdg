@@ -1,0 +1,8 @@
+node_modules/
+build/
+target/
+*.so
+*.dylib
+*.wasm
+.build/
+__pycache__/
