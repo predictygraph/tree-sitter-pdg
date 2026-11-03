@@ -12,8 +12,8 @@
     }
   ],
   "metadata": {
-    "version": "0.1.0",
-    "license": "GPL-3.0-or-later",
+    "version": "0.2.0",
+    "license": "Apache-2.0",
     "description": "predictygraph (.pdg) diagram grammar for tree-sitter",
     "authors": [{ "name": "Reza Jelveh", "email": "git@jelveh.me" }],
     "links": { "repository": "https://github.com/predictygraph/tree-sitter-pdg" }

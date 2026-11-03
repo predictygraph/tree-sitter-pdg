@@ -1,7 +1,7 @@
 <!--
-SPDX-FileCopyrightText: 2026 The predictygraph Authors
+SPDX-FileCopyrightText: 2026 Reza Jelveh
 
-SPDX-License-Identifier: GPL-3.0-or-later
+SPDX-License-Identifier: Apache-2.0
 -->
 
 # tree-sitter-pdg
@@ -54,4 +54,4 @@ Corpus tests live in `test/corpus/`. When the language changes, update `grammar.
 
 ## License
 
-GPL-3.0-or-later, same as predictygraph.
+Apache-2.0, same as predictygraph.

@@ -106,3 +106,31 @@ a fill=#fff
   (node_statement
     id: (identifier)
     (attribute key: (attribute_name) value: (value))))
+
+==================
+Variables and reusable blocks
+==================
+
+let accent = "#3939D8"
+let n = 2
+def server gpus=2 tag {
+  gpu "GPU x${gpus}" fill=$accent
+}
+use server node1 "Node 1" gpus=8
+a $accent
+
+---
+
+(source_file
+  (let_statement name: (identifier) value: (string))
+  (let_statement name: (identifier) value: (value))
+  (def_statement
+    name: (identifier)
+    (parameter name: (identifier) default: (value))
+    (parameter name: (identifier))
+    (block
+      (node_statement id: (identifier) label: (string)
+        (attribute key: (attribute_name) value: (variable)))))
+  (use_statement block: (identifier) id: (identifier) label: (string)
+    (attribute key: (attribute_name) value: (value)))
+  (node_statement id: (identifier) label: (variable)))

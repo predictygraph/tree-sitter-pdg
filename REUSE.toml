@@ -3,20 +3,20 @@ version = 1
 [[annotations]]
 path = "src/parser.c"
 precedence = "aggregate"
-SPDX-FileCopyrightText = "The predictygraph Authors"
-SPDX-License-Identifier = "GPL-3.0-or-later"
+SPDX-FileCopyrightText = "Reza Jelveh"
+SPDX-License-Identifier = "Apache-2.0"
 
 [[annotations]]
 path = "src/grammar.json"
 precedence = "aggregate"
-SPDX-FileCopyrightText = "The predictygraph Authors"
-SPDX-License-Identifier = "GPL-3.0-or-later"
+SPDX-FileCopyrightText = "Reza Jelveh"
+SPDX-License-Identifier = "Apache-2.0"
 
 [[annotations]]
 path = "src/node-types.json"
 precedence = "aggregate"
-SPDX-FileCopyrightText = "The predictygraph Authors"
-SPDX-License-Identifier = "GPL-3.0-or-later"
+SPDX-FileCopyrightText = "Reza Jelveh"
+SPDX-License-Identifier = "Apache-2.0"
 
 [[annotations]]
 path = "src/tree_sitter/*"
@@ -27,11 +27,11 @@ SPDX-License-Identifier = "MIT"
 [[annotations]]
 path = "test/corpus/*"
 precedence = "aggregate"
-SPDX-FileCopyrightText = "The predictygraph Authors"
-SPDX-License-Identifier = "GPL-3.0-or-later"
+SPDX-FileCopyrightText = "Reza Jelveh"
+SPDX-License-Identifier = "Apache-2.0"
 
 [[annotations]]
 path = "tree-sitter.json"
 precedence = "aggregate"
-SPDX-FileCopyrightText = "The predictygraph Authors"
-SPDX-License-Identifier = "GPL-3.0-or-later"
+SPDX-FileCopyrightText = "Reza Jelveh"
+SPDX-License-Identifier = "Apache-2.0"

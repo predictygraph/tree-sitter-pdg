@@ -1,10 +1,10 @@
-// SPDX-FileCopyrightText: 2026 The predictygraph Authors
+// SPDX-FileCopyrightText: 2026 Reza Jelveh
 //
-// SPDX-License-Identifier: GPL-3.0-or-later
+// SPDX-License-Identifier: Apache-2.0
 
 /**
  * @file Tree-sitter grammar for predictygraph (.pdg) diagrams
- * @license GPL-3.0-or-later
+ * @license Apache-2.0
  * Mirrors docs/SPEC.md and src/predictygraph/parser.py in the main repo.
  */
 
@@ -37,6 +37,9 @@ module.exports = grammar({
       $.css_block,
       $.default_statement,
       $.group,
+      $.let_statement,
+      $.def_statement,
+      $.use_statement,
       $.edge_statement,
       $.node_statement,
     ),
@@ -57,23 +60,53 @@ module.exports = grammar({
     group: $ => seq(
       'group',
       field('id', $.identifier),
-      optional(field('label', $.string)),
+      optional(field('label', $._label)),
       repeat($._modifier),
       $.block,
     ),
+
+    // let NAME = VALUE
+    let_statement: $ => seq(
+      'let',
+      field('name', $.identifier),
+      '=',
+      field('value', choice($.string, $.variable, alias(/[^\s{}";$][^\s{}";]*/, $.value))),
+    ),
+
+    // def NAME [PARAM[=DEFAULT]...] { ... }
+    def_statement: $ => seq(
+      'def',
+      field('name', $.identifier),
+      repeat($.parameter),
+      $.block,
+    ),
+
+    parameter: $ => seq(
+      field('name', $.identifier),
+      optional(seq(token.immediate('='), field('default', $._attribute_value))),
+    ),
+
+    // use NAME ID ["Label"] [.class...] [PARAM=VALUE...]
+    use_statement: $ => prec.right(seq(
+      'use',
+      field('block', $.identifier),
+      field('id', $.identifier),
+      optional(field('label', $._label)),
+      repeat($._modifier),
+    )),
 
     block: $ => seq('{', optional($._statements), '}'),
 
     node_statement: $ => prec.right(1, seq(
       field('id', $.identifier),
-      optional(field('label', $.string)),
+      optional(field('label', $._label)),
       repeat($._modifier),
     )),
 
     edge_statement: $ => prec.right(seq(
       $.endpoints,
       repeat1(seq($.arrow, $.endpoints)),
-      optional(field('label', $.string)),
+      optional(field('label', $._label)),
       repeat($._modifier),
     )),
 
@@ -84,14 +117,24 @@ module.exports = grammar({
 
     _modifier: $ => choice($.class, $.attribute),
 
-    class: $ => token(seq('.', /[A-Za-z_][\w-]*/)),
+    class: $ => token(seq('.', /\$?[A-Za-z_][\w-]*/)),
 
     attribute: $ => seq(
       field('key', alias($.identifier, $.attribute_name)),
       token.immediate('='),
-      field('value', choice(alias(token.immediate(/"(?:[^"\\]|\\.)*"/), $.string),
-        alias(token.immediate(/[^\s{}";]+/), $.value))),
+      field('value', $._attribute_value),
     ),
+
+    _attribute_value: $ => choice(
+      alias(token.immediate(/"(?:[^"\\]|\\.)*"/), $.string),
+      alias(token.immediate(prec(1, /\$[A-Za-z_]\w*/)), $.variable),
+      alias(token.immediate(/[^\s{}";$][^\s{}";]*/), $.value),
+    ),
+
+    _label: $ => choice($.string, $.variable),
+
+    // $NAME; `${NAME}` inside strings stays part of the string
+    variable: _ => /\$[A-Za-z_]\w*/,
 
     identifier: _ => /[A-Za-z_][\w-]*/,
 

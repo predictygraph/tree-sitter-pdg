@@ -1,6 +1,6 @@
--- SPDX-FileCopyrightText: 2026 The predictygraph Authors
+-- SPDX-FileCopyrightText: 2026 Reza Jelveh
 --
--- SPDX-License-Identifier: GPL-3.0-or-later
+-- SPDX-License-Identifier: Apache-2.0
 
 -- Registers the pdg parser with nvim-treesitter and maps *.pdg to it.
 -- lazy.nvim: { "predictygraph/tree-sitter-pdg", dependencies = { "nvim-treesitter/nvim-treesitter" } }

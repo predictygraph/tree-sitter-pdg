@@ -24,6 +24,10 @@
           {
             "type": "value",
             "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
           }
         ]
       }
@@ -46,6 +50,10 @@
           "named": true
         },
         {
+          "type": "def_statement",
+          "named": true
+        },
+        {
           "type": "default_statement",
           "named": true
         },
@@ -62,7 +70,15 @@
           "named": true
         },
         {
+          "type": "let_statement",
+          "named": true
+        },
+        {
           "type": "node_statement",
+          "named": true
+        },
+        {
+          "type": "use_statement",
           "named": true
         }
       ]
@@ -102,6 +118,36 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "def_statement",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "parameter",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -152,6 +198,10 @@
         "types": [
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable",
             "named": true
           }
         ]
@@ -235,6 +285,10 @@
           {
             "type": "string",
             "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
           }
         ]
       }
@@ -259,6 +313,40 @@
     }
   },
   {
+    "type": "let_statement",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "value",
+            "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "node_statement",
     "named": true,
     "fields": {
@@ -278,6 +366,10 @@
         "types": [
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable",
             "named": true
           }
         ]
@@ -299,6 +391,40 @@
     }
   },
   {
+    "type": "parameter",
+    "named": true,
+    "fields": {
+      "default": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "value",
+            "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "root": true,
@@ -313,6 +439,10 @@
         },
         {
           "type": "css_import",
+          "named": true
+        },
+        {
+          "type": "def_statement",
           "named": true
         },
         {
@@ -332,7 +462,69 @@
           "named": true
         },
         {
+          "type": "let_statement",
+          "named": true
+        },
+        {
           "type": "node_statement",
+          "named": true
+        },
+        {
+          "type": "use_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "use_statement",
+    "named": true,
+    "fields": {
+      "block": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "id": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "label": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute",
+          "named": true
+        },
+        {
+          "type": "class",
           "named": true
         }
       ]
@@ -372,6 +564,10 @@
     "named": false
   },
   {
+    "type": "def",
+    "named": false
+  },
+  {
     "type": "default",
     "named": false
   },
@@ -392,6 +588,10 @@
     "named": true
   },
   {
+    "type": "let",
+    "named": false
+  },
+  {
     "type": "node",
     "named": false
   },
@@ -400,7 +600,15 @@
     "named": true
   },
   {
+    "type": "use",
+    "named": false
+  },
+  {
     "type": "value",
+    "named": true
+  },
+  {
+    "type": "variable",
     "named": true
   },
   {

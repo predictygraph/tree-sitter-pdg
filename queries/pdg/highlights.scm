@@ -1,9 +1,9 @@
-;;; SPDX-FileCopyrightText: 2026 The predictygraph Authors
+;;; SPDX-FileCopyrightText: 2026 Reza Jelveh
 ;;;
-;;; SPDX-License-Identifier: GPL-3.0-or-later
+;;; SPDX-License-Identifier: Apache-2.0
 
 ; Keywords
-["graph" "css" "default" "group"] @keyword
+["graph" "css" "default" "group" "let" "def" "use"] @keyword
 ["node" "edge"] @type.builtin
 (default_statement kind: _ @type.builtin)
 
@@ -11,6 +11,13 @@
 (group id: (identifier) @module)
 (node_statement id: (identifier) @variable)
 (endpoints (identifier) @variable)
+
+(def_statement name: (identifier) @function)
+(use_statement block: (identifier) @function.call)
+(use_statement id: (identifier) @module)
+(let_statement name: (identifier) @variable)
+(parameter name: (identifier) @variable.parameter)
+(variable) @variable
 
 ; Labels and strings
 (string) @string
